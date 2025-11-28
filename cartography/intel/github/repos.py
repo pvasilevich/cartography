@@ -100,18 +100,6 @@ GITHUB_ORG_REPOS_PAGINATED_GRAPHQL = """
                             text
                         }
                     }
-                    dependencyGraphManifests(first: 20) {
-                        nodes {
-                            blobPath
-                            dependencies(first: 100) {
-                                nodes {
-                                    packageName
-                                    requirements
-                                    packageManager
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
