@@ -90,16 +90,6 @@ GITHUB_ORG_REPOS_PAGINATED_GRAPHQL = """
                     outsideCollaborators: collaborators(first: 100, affiliation: OUTSIDE) {
                         totalCount
                     }
-                    requirements:object(expression: "HEAD:requirements.txt") {
-                        ... on Blob {
-                            text
-                        }
-                    }
-                    setupCfg:object(expression: "HEAD:setup.cfg") {
-                        ... on Blob {
-                            text
-                        }
-                    }
                 }
             }
         }
@@ -374,26 +364,6 @@ def transform(
                 transformed_direct_collaborators,
             )
 
-        _transform_requirements_txt(
-            repo_object["requirements"],
-            repo_url,
-            transformed_requirements_files,
-        )
-        _transform_setup_cfg_requirements(
-            repo_object["setupCfg"],
-            repo_url,
-            transformed_requirements_files,
-        )
-        _transform_dependency_manifests(
-            repo_object.get("dependencyGraphManifests"),
-            repo_url,
-            transformed_manifests,
-        )
-        _transform_dependency_graph(
-            repo_object.get("dependencyGraphManifests"),
-            repo_url,
-            transformed_dependencies,
-        )
     results = {
         "repos": transformed_repo_list,
         "repo_languages": transformed_repo_languages,
