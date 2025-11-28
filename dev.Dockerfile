@@ -24,6 +24,7 @@ COPY --from=ghcr.io/astral-sh/uv@sha256:87a04222b228501907f487b338ca6fc1514a9336
 WORKDIR /var/cartography
 COPY . /var/cartography
 RUN uv sync --dev && uv venv
+RUN uv sync
 RUN chmod -R a+w /var/cartography
 
 # Now copy the entire source tree.
